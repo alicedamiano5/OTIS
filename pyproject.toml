@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "OTIS"
+version = "1.0.0"
+authors = [
+  { name="Alice Damiano", email="alicedamiano0598@gmail.com" },
+]
+description = "A package to calculate analytical orbital Timescales for BH in cosmic structures."
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
