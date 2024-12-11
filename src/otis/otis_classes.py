@@ -10,7 +10,7 @@
         
 #===============================================================
 
-from otis import otis_utils
+from otis.otis_utils import *
 
 ##################### since initially suited to work on Gadget code units, this is a conversion function 
 
