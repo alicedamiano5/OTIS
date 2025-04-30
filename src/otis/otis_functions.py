@@ -18,18 +18,31 @@ from otis.otis_utils import *
 
 
 
-def maxwellian_distribution(x,r, Halo_Type=NFWHalo):
-    """Calculate the value of the maxwellian distribution given a dispersion"""
-    sigma_function_vectorized = np.vectorize(Halo_Type.sigmav_nfw)
-    sigma = sigma_function_vectorized(r)
+def maxwellian_distribution(x, r, Halo_Type, bulge=None, Bulge_Type=None):
+    """Calculate the value of the Maxwellian distribution given a dispersion."""
+    
+    # Compute the halo velocity dispersion
+    sigma_halo = np.vectorize(Halo_Type.sigmav_nfw)(r)
 
-    return ((np.sqrt(1/(2*np.pi*(sigma**2))**3)*x*x* np.exp(-(x**2) / (2 * sigma**2))))
+    if bulge and Bulge_Type:
+        # Compute the bulge velocity dispersion
+        sigma_bulge = np.vectorize(Bulge_Type.sigma_bulge)(r)
 
-def interpolation(radius, vel, Halo_Type, velocity_distribution_function=maxwellian_distribution):
+        # Correctly compute the total velocity dispersion
+        sigma_total = np.sqrt((sigma_halo**2 + sigma_bulge**2))
+    else:
+        sigma_total = sigma_halo
+    ############ this is making the assumption that 
+    
+    # Maxwellian Distribution Formula
+    return (np.sqrt(1 / (2 * np.pi * (sigma_total ** 2)) ** 3) *
+            x ** 2 * np.exp(-(x ** 2) / (2 * sigma_total ** 2)))
+
+def interpolation(radius, vel, Halo_Type, velocity_distribution_function=maxwellian_distribution, bulge=False, Bulge_Type=None):
 
     # Define the integrand for integration
     def integrand(v, r):
-        return velocity_distribution_function(v, r, Halo_Type)
+        return velocity_distribution_function(v, r, Halo_Type, bulge, Bulge_Type)
 
     # Perform the integration for a given distance r
     def compute_integral(v, r):
@@ -52,7 +65,6 @@ def interpolation(radius, vel, Halo_Type, velocity_distribution_function=maxwell
     interp = RegularGridInterpolator((vel, radius), Z)
     print("Interpolation done.")
     return interp
-
 ################## heart of the code: produce the analytical times
 
 ############ you can provide an eccentricity and the code translate it into a velocity value!!!!!!!! - IMPROVEMENT
