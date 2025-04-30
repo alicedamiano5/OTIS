@@ -92,6 +92,10 @@ class NFWHalo:
         first = self.m_vir/(np.log(1+self.conc)-(self.conc/(1+self.conc)))
         second=(1/(r))*(-((np.log(1+x))/r)+(1/((r+self.r_s))))
         return np.longdouble(first*second*Grav)
+    
+    def v_circ(self,r):
+        res = Grav*self.mass_nfw(r)/r
+        return np.sqrt(res)
 
 
 class BH:
@@ -99,4 +103,44 @@ class BH:
         self.mass     = mass
         self.initial_position = initial_position
         self.initial_velocity = initial_velocity
+
+
+class Bulge:
+    def __init__(self, r_bulge, m_bulge):
+        self.r_bulge = r_bulge
+        self.m_bulge = m_bulge
+    
+    def rho_bulge(self,r):
+
+        dens = (self.m_bulge/(2*np.pi*r*((self.r_bulge+r)**3)))*self.r_bulge
+        return dens
+
+    def mass_bulge(self,r):
+
+        mass = self.m_bulge*r*r/((r+self.r_bulge)**2)
+        return mass
+       
+    def sigma_bulge(self,r):
+
+        prefac = -Grav*self.m_bulge*r*((self.r_bulge+r)**3)
+        one = (np.log(abs(r))-np.log(abs(r+self.r_bulge)))/(self.r_bulge**5)
+        two = 1/((self.r_bulge**4)*(r+self.r_bulge))
+        three = 1/(2*(self.r_bulge**3)*((r+self.r_bulge)**2))
+        four=1/(3*self.r_bulge*self.r_bulge*((r+self.r_bulge)**3))
+        five=1/(4*self.r_bulge*((r+self.r_bulge)**4))
+        sigma = (one + two + three+four+five)*prefac
+        return np.sqrt(sigma)
+    
+    def v_circ_bulge(self,r):
+        res = Grav*self.mass_bulge(r)/r
+        return np.sqrt(res)
+    
+    def bulge_potential(self, r): 
+        res = -Grav*self.m_bulge/(r+self.r_bulge)
+        return res
+
+
+    def bulge_acc(self, r):
+        res = -Grav*self.m_bulge/((r+self.r_bulge)*(r+self.r_bulge))
+        return res
 
