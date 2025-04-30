@@ -11,9 +11,26 @@ The code workflow starts with the initialization of the DM halo parameters, incl
  
 # How to install OTIS
 
+Dependencies: SciPy, NumPy
+
 OTIS is easy to install using pip:
 
 ```
-pip install 
-}
+pip3 install https://github.com/alicedamiano5/OTIS.git
 ```
+
+Then just import otis in you python code: 
+```
+import otis
+
+```
+hand have fun!
+
+# Example code
+
+In  the tests directory you will find an example to see OTIS in action !
+
+
+
+
+
