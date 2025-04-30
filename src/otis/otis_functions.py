@@ -120,7 +120,7 @@ def analytical_times(BH,interp, Halo_Type=NFWHalo, bmax = 0., bmin = 0.,  interp
         [x0,y0, vx0, vy0 ]=cond
         r0 = np.longdouble(np.sqrt((x0**2)+(y0**2)))
         v = np.longdouble(np.sqrt((vx0**2)+(vy0**2)))
-        print(r0, v)
+        #print(r0, v)
         if DF == False: 
              dvx = Halo_Type.nfw_acc(r0)*(x0/r0)
              dvy = Halo_Type.nfw_acc(r0)*(y0/r0)
