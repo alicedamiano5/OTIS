@@ -9,4 +9,11 @@ Here is the a scatchy flowchart of the library:
 The code workflow starts with the initialization of the DM halo parameters, including the concentration parameter and virial quantities, eventually followed by the initialization of the stellar Hernquist bulge. The density, mass, and velocity dispersion profiles of both the halo and the bulge can be hence retrieved. The BH is then initialized with its mass and phase-space coordinates. The integral of the velocity distribution function is precomputed on a phase-space grid, enabling fast interpolation during the numerical integration of the equations of motion. User-configurable options allow customization of the interpolation technique, integration method, time steps, and impact parameters.
 
  
+# How to install OTIS
 
+OTIS is easy to install using pip:
+
+```
+pip install 
+}
+```
