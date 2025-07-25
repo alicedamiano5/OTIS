@@ -26,11 +26,10 @@ import otis
 ```
 hand have fun!
 
+
 # Example code
 
-In  the tests directory you will find an example to see OTIS in action !
-
-
+In the tests directory you will find an example to see OTIS in action and several tests on the accuracy of the integrator !
 
 
 
