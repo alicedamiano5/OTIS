@@ -32,7 +32,7 @@ hand have fun!
 In the tests directory you will find an example to see OTIS in action !
 
 
-#Integrator accuracy and default options
+# Integrator accuracy and default options
 
 The accuracy of the integration depends on the specific Scipy integrator and grid size. To reduce the integrator inaccuracies, OTIS default maximum timestep size is 0.01 and the default integrator is the Scipy Radau. Integrators ad timestep sizes critically depend on the choice of the problem, when moving from the default option, always double-check your results using a different integrators!
 
