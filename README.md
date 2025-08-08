@@ -34,7 +34,12 @@ In the tests directory you will find an example to see OTIS in action !
 
 # Integrator accuracy and default options
 
-The accuracy of the integration depends on the specific Scipy integrator and grid size. To reduce the integrator inaccuracies, OTIS default maximum timestep size is 0.01 and the default integrator is the Scipy Radau. Integrators ad timestep sizes critically depend on the choice of the problem, when moving from the default option, always double-check your results using a different integrators!
+The accuracy of the integration depends on the specific Scipy integrator and grid size. To reduce the integrator inaccuracies, OTIS default maximum timestep size is 0.01 and the default integrator is the Scipy Radau. Integrators ad timestep sizes critically depend on the choice of the problem, when moving from the default option, always double-check your results using a different integrators. 
+The following figure analyses the time to solution as a function of the specific Scipy integrator adopted, with bar color-coded with the number of acceleration evaluation. Each group of bars corresponds to a different maximum allowed timestep, in Gyr: default (left), 0.05 (middle), and 0.01 (right). The number on top of each bar indicates the number of steps taken. The corresponding distance to the halo center is displayed in the bottom figure. For the specific problem analysed, the high accuracy integrator RK45 (suitable fro non stiff problems) leads to the wrong solution if the maximum timestep size is not constrained. On the other hand, the Radau integrator shows stability across the the timestep sizes. 
+
+[rr_timetosolution_threeplots.pdf](https://github.com/user-attachments/files/21686507/rr_timetosolution_threeplots.pdf)
+
+[rr_Orbits.pdf](https://github.com/user-attachments/files/21686557/rr_Orbits.pdf)
 
 
 
